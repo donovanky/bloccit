@@ -3,17 +3,21 @@ const server = require("../../src/server");
 const base = "http://localhost:3000/";
 
 describe("routes : static", () => {
-//#1
+  describe("GET /", () => {
+    it("should return status code 200 and have 'Welcome to Bloccit'", () => {
+      request.get(base, (error, response, body) => {
+        expect(response.statusCode).toBe(200);
+        expect(body).toContain("Welcome to Bloccit");
+      });
+    });
+  });
   describe("GET /marco", () => {
-//#2
-    it("should return status code 200", (done) => {
-//#3
-      request.get(base, (err, res, body) => {
-        expect(res.statusCode).toBe(200);
-//#4
+    it("should return status code 200 and return string polo", done => {
+      request.get(base + "/marco", (error, response, body) => {
+        expect(response.statusCode).toBe(200);
+        expect(body).toContain('polo');
         done();
       });
     });
-
   });
 });
