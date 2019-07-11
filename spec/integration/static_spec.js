@@ -5,8 +5,8 @@ const base = 'http://localhost:3000';
 describe("routes : static", () => {
   describe("GET /", () => {
     it("should return status code 200 and have 'Welcome to Bloccit' in the body of the response", () => {
-      request.get(base, (err, res, body) => {
-        expect(res.statusCode).toBe(200);
+      request.get(base, (error, response, body) => {
+        expect(response.statusCode).toBe(200);
         expect(body).toContain("Welcome to Bloccit");
       });
     });
@@ -14,7 +14,7 @@ describe("routes : static", () => {
   describe("GET /about", () => {
     it("should contain the string 'About Us'", () => {
       request.get(base + "/about", (err, res, body) => {
-        expect(res.statusCode).toBe(200);
+        expect(response.statusCode).toBe(200);
         expect(body).toContain("About Us");
       });
     });
@@ -22,8 +22,8 @@ describe("routes : static", () => {
   describe("GET /marco", () => {
     it("should return status code 200", done => {
       request.get(base + "/marco", (err, res, body) => {
-        expect(res.statusCode).toBe(200);
-        expect(res.body).toBe('polo');
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toBe('polo');
         done();
       });
     });
