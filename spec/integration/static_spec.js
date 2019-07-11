@@ -11,10 +11,10 @@ describe("routes : static", () => {
       });
     });
   });
-
   describe("GET /about", () => {
-    it("should containt the string 'About Us'", () => {
+    it("should contain the string 'About Us'", () => {
       request.get(base + "/about", (error, response, body) => {
+        expect(response.statusCode).toBe(200);
         expect(body).toContain("About Us");
       });
     });
