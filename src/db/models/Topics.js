@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Rule = sequelize.define('Rule', {
+  var Topics = sequelize.define('Topics', {
     source: DataTypes.STRING,
     description: DataTypes.STRING,
     TopicsId: {
@@ -13,11 +13,15 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   }, {});
-  Rule.associate = function(models) {
-    Rule.belongsTo(models.Topics, {
+  Topics.associate = function(models) {
+    Topics.hasMany(models.Banner, {
       foreignKey: "TopicsId",
-      onDelete: "CASCADE",
+      as: "banners",
+    });
+  Topics.hasMany(models.Rule, {
+    foreignKey: "TopicsId",
+    as: "Rules",
     });
   };
-  return Rule;
+  return Topics;
 };
