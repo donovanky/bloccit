@@ -3,19 +3,19 @@ module.exports = (sequelize, DataTypes) => {
   var Banner = sequelize.define('Banner', {
     source: DataTypes.STRING,
     description: DataTypes.STRING,
-    topicId: {
+    TopicsId: {
       type: DataTypes.INTEGER,
       onDelete: "CASCADE",
       references: {
-        model: "Topic",
+        model: "Topics",
         key: "id",
-        as: "topicId",
+        as: "TopicsId",
       }
     }
   }, {});
   Banner.associate = function(models) {
-    Banner.belongsTo(models.Topic, {
-      foreignKey: "topicId",
+    Banner.belongsTo(models.Topics, {
+      foreignKey: "TopicsId",
       onDelete: "CASCADE",
     });
   };

@@ -1,17 +1,17 @@
-const Topic = require("./models").Topic;
+const Topics = require("./models").Topics;
 
 module.exports = {
 
 //#1
   getAllTopics(callback){
-    return Topic.all()
+    return Topics.all()
 
 //#2
-    .then((topics) => {
-      callback(null, topics);
+    .then((Topics) => {
+      callback(null, Topics);
     })
-    .catch((err) => {
-      callback(err);
+    .catch((error) => {
+      callback(error);
     })
   }
 }
