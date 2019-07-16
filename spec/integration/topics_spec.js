@@ -20,7 +20,7 @@ describe("routes : Topics", () => {
             done();
           })
           .catch((error) => {
-            console.log(err);
+            console.log(error);
             done();
           });
 
@@ -39,6 +39,6 @@ describe("routes : Topics", () => {
         done();
       });
     });
-
   });
+
 });
