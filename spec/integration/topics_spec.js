@@ -23,13 +23,9 @@ describe("routes : Topics", () => {
             console.log(error);
             done();
           });
-
         });
-
       });
-
   describe("GET /Topics", () => {
-
     it("should return a status code 200 and all Topics", (done) => {
       request.get(base, (error, response, body) => {
         expect(response.statusCode).toBe(200);
