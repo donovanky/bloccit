@@ -4,6 +4,7 @@ module.exports = {
 
 //#1
   getAllTopics(callback){
+    console.log("getAllTopics(callback) is called");
     return Topics.all()
 
 //#2
@@ -11,6 +12,7 @@ module.exports = {
       callback(null, Topics);
     })
     .catch((error) => {
+      console.log(error);
       callback(error);
     })
   }
