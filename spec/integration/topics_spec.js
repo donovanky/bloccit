@@ -1,6 +1,6 @@
 const request = require("request");
 const server = require("../../src/server");
-const base = "http://localhost:3000/Topics/";
+const base = "http://localhost:3000/topic/";
 
 const sequelize = require("../../src/db/models/index").sequelize;
 const Topics = require("../../src/db//models").Topics;
