@@ -93,16 +93,16 @@ describe("POST /Topics/:id/destroy", () => {
   it("should delete the topic with the associated ID", (done) => {
 //#1
     Topics.all()
-    .then((Topics) => {
+    .then((topic) => {
 //#2
       const topicCountBeforeDelete = Topics.length;
       expect(topicCountBeforeDelete).toBe(1);
 //#3
       request.post(`${base}${this.Topics.id}/destroy`, (error, response, body) => {
         Topics.all()
-        .then((Topics) => {
+        .then((topic) => {
           expect(error).toBeNull();
-          expect(Topics.length).toBe(topicCountBeforeDelete - 1);
+          expect(topic.length).toBe(topicCountBeforeDelete - 1);
           done();
         })
       });
