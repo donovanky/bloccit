@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var Topics = sequelize.define('Topics', {
+  var topic = sequelize.define('topic', {
   title: DataTypes.STRING,
   description: DataTypes.STRING
   }, {});
@@ -14,5 +14,5 @@ module.exports = (sequelize, DataTypes) => {
     as: "Rules",
     });
   };
-  return Topics;
+  return topic;
 };
