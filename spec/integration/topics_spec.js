@@ -8,15 +8,15 @@ const Topics = require("../../src/db//models").Topics;
 describe("routes : Topics", () => {
 
   beforeEach((done) => {
-        this.Topics;
+        this.topic;
         sequelize.sync({force: true}).then((response) => {
 
          Topics.create({
            title: "JS Frameworks",
            description: "There is a lot of them"
          })
-          .then((Topics) => {
-            this.Topics = Topics;
+          .then((topic) => {
+            this.topic = topic;
             done();
           })
           .catch((error) => {
@@ -64,7 +64,7 @@ describe("routes : Topics", () => {
 //#2
         (error, response, body) => {
           Topics.findOne({where: {title: "blink-182 songs"}})
-          .then((Topics) => {
+          .then((topic) => {
             expect(response.statusCode).toBe(303);
             expect(Topics.title).toBe("blink-182 songs");
             expect(Topics.description).toBe("What's your favorite blink-182 song?");
