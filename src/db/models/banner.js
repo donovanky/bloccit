@@ -7,14 +7,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       onDelete: "CASCADE",
       references: {
-        model: "Topics",
+        model: "topic",
         key: "id",
         as: "TopicsId",
       }
     }
   }, {});
   Banner.associate = function(models) {
-    Banner.belongsTo(models.Topics, {
+    Banner.belongsTo(models.topic, {
       foreignKey: "TopicsId",
       onDelete: "CASCADE",
     });
