@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: "Topics",
         key: "id",
-        as: "TopicsId",
+        as: "topicId",
       }
     }
   }, {});
   Banner.associate = function(models) {
     Banner.belongsTo(models.Topic, {
-      foreignKey: "TopicsId",
+      foreignKey: "topicId",
       onDelete: "CASCADE",
     });
   };
