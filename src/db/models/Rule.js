@@ -6,15 +6,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       onDelete: "CASCADE",
       references: {
-        model: "Topics",
+        model: "topic",
         key: "id",
-        as: "TopicsId",
+        as: "topicId",
       }
     }
   }, {});
   Rule.associate = function(models) {
     Rule.belongsTo(models.Topics, {
-      foreignKey: "TopicsId",
+      foreignKey: "topicId",
       onDelete: "CASCADE",
     });
   };
