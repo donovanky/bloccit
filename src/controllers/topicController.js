@@ -1,21 +1,21 @@
 
- const TopicsQueries = require("../db/queries.topic.js");
+ const topicQueries = require("../db/queries.topic.js");
 
  module.exports = {
    index(request, response, next){
 //#2
-      TopicsQueries.getAllTopics((error, topic) => {
+      topicQueries.getAllTopics((error, topic) => {
 //#3
         if(error){
           response.redirect(500, "static/index");
         } else {
-          response.render("topic/index", {Topics});
+          response.render("topics/index", {Topics});
         }
       })
    },
 
    new(request, response, next){
-      response.render("topic/new");
+      response.render("topics/new");
     },
 
     create(request, response, next){

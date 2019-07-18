@@ -1,9 +1,9 @@
 module.exports = {
   init(app){
     const staticRoutes = require("../routes/static");
-    const TopicsRoutes = require("../routes/topic");
+    const topicRoutes = require("../routes/topics");
 
     app.use(staticRoutes);
-    app.use(TopicsRoutes);
+    app.use(topicRoutes);
   }
 }
