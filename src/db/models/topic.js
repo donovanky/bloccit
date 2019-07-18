@@ -1,18 +1,22 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  var topic = sequelize.define('topic', {
-  title: DataTypes.STRING,
-  description: DataTypes.STRING
+  var Topic = sequelize.define('Topic', {
+    title: DataTypes.STRING,
+    description: DataTypes.STRING
   }, {});
-  topic.associate = function(models) {
-    topic.hasMany(models.Banner, {
-      foreignKey: "TopicsId",
+  Topic.associate = function(models) {
+    Topic.hasMany(models.Banner, {
+      foreignKey: "topicId",
       as: "banners",
     });
-  topic.hasMany(models.Rule, {
-    foreignKey: "TopicsId",
-    as: "Rules",
+    Topic.hasMany(models.Rule, {
+      foreignKey: "topicId",
+      as: "rules",
+    });
+    Topic.hasMany(models.Advertisement, {
+      foreignKey: "topicId",
+      as: "advertisements",
     });
   };
-  return topic;
+  return Topic;
 };

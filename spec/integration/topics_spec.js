@@ -1,32 +1,30 @@
 const request = require("request");
 const server = require("../../src/server");
-const base = "http://localhost:3000/topic/";
-
+const base = "http://localhost:3000/topics/";
 const sequelize = require("../../src/db/models/index").sequelize;
-const topic = require("../../src/db//models").Topics;
+const Topic = require("../../src/db/models").Topic;
 
-describe("routes : Topics", () => {
-
-  beforeEach((done) => {
-        this.topic;
-        sequelize.sync({force: true}).then((response) => {
-
-         Topics.create({
-           title: "JS Frameworks",
-           description: "There is a lot of them"
-         })
-          .then((topic) => {
-            this.topic = topic;
-            done();
-          })
-          .catch((error) => {
-            console.log(error);
-            done();
-          });
-        });
+describe("routes : topics", () => {
+  beforeEach(done => {
+    this.topic;
+    sequelize.sync({force: true}).then(response => {
+      Topic.create({
+        title: "JS Frameworks",
+        description: "There is a lot of them"
+      })
+      .then(topic => {
+        this.topic = topic;
+        done();
+      })
+      .catch(error => {
+        console.log(error);
+        done();
       });
-  describe("GET /Topics", () => {
-    it("should return a status code 200 and all Topics", (done) => {
+    });
+  });
+
+  describe("GET /topics", () => {
+    it("should return a status code 200 and all topics", done => {
       request.get(base, (error, response, body) => {
         expect(response.statusCode).toBe(200);
         expect(error).toBeNull();
@@ -37,17 +35,17 @@ describe("routes : Topics", () => {
     });
   });
 
-  describe("GET /Topics/new", () => {
-
-    it("should render a new Topics form", (done) => {
+  describe("GET /topics/new", () => {
+    it("should render a new topic form", done => {
       request.get(`${base}new`, (error, response, body) => {
         expect(error).toBeNull();
-        expect(body).toContain("New Topics");
+        expect(body).toContain("New Topic");
         done();
       });
     });
   });
-  describe("POST /Topics/create", () => {
+
+  describe("POST /topics/create", () => {
     const options = {
       url: `${base}create`,
       form: {
@@ -56,60 +54,89 @@ describe("routes : Topics", () => {
       }
     };
 
-    it("should create a new Topics and redirect", (done) => {
-
-//#1
-      request.post(options,
-
-//#2
-        (error, response, body) => {
-          Topics.findOne({where: {title: "blink-182 songs"}})
-          .then((topic) => {
-            expect(response.statusCode).toBe(303);
-            expect(Topics.title).toBe("blink-182 songs");
-            expect(Topics.description).toBe("What's your favorite blink-182 song?");
-            done();
-          })
-          .catch((error) => {
-            console.log(error);
-            done();
-          });
-        }
-      );
-    });
-  });
-
-  describe("GET /Topics/:id", () => {
-  it("should render a view with the selected Topics", (done) => {
-    request.get(`${base}${this.Topics.id}`, (error, response, body) => {
-      expect(error).toBeNull();
-      expect(body).toContain("JS Frameworks");
-      done();
-    });
-  });
-});
-
-describe("POST /Topics/:id/destroy", () => {
-  it("should delete the topic with the associated ID", (done) => {
-//#1
-    Topics.all()
-    .then((topic) => {
-//#2
-      const topicCountBeforeDelete = Topics.length;
-      expect(topicCountBeforeDelete).toBe(1);
-//#3
-      request.post(`${base}${this.Topics.id}/destroy`, (error, response, body) => {
-        Topics.all()
-        .then((topic) => {
-          expect(error).toBeNull();
-          expect(topic.length).toBe(topicCountBeforeDelete - 1);
+    it("should create a new topic and redirect", done => {
+      request.post(options, (error, response, body) => {
+        Topic.findOne({where: {title: "blink-182 songs"}})
+        .then(topic => {
+          expect(response.statusCode).toBe(303);
+          expect(topic.title).toBe("blink-182 songs");
+          expect(topic.description).toBe("What's your favorite blink-182 song?");
           done();
         })
+        .catch(error => {
+          console.log(error);
+          done();
+        });
+      });
+    });
+
+  });
+
+  describe("GET /topics/:id", () => {
+    it("should render a view with the selected topic", done => {
+      request.get(`${base}${this.topic.id}`, (error, response, body) => {
+        expect(error).toBeNull();
+        expect(body).toContain("JS Frameworks");
+        done();
       });
     });
   });
-});
+
+  describe("POST /topics/:id/destroy", () => {
+    it("should delete the topic with the associated ID", done => {
+      Topic.all()
+      .then(topics => {
+        const topicCountBeforeDelete = topics.length;
+
+        expect(topicCountBeforeDelete).toBe(1);
+
+        request.post(`${base}${this.topic.id}/destroy`, (error, response, body) => {
+          Topic.all()
+          .then(topics => {
+            expect(error).toBeNull();
+            expect(topics.length).toBe(topicCountBeforeDelete - 1);
+            done();
+          });
+        });
+      });
+    });
+  });
+
+  describe("GET /topics/:id/edit", () => {
+    it("should render a view with an edit topic form", done => {
+      request.get(`${base}${this.topic.id}/edit`, (error, response, body) => {
+        expect(error).toBeNull();
+        expect(body).toContain("Edit Topic");
+        expect(body).toContain("JS Frameworks");
+        done();
+      });
+    });
+  });
+
+  describe("POST /topics/:id/update", () => {
+    it("should update the topic with the given values", done => {
+      const options = {
+        url: `${base}${this.topic.id}/update`,
+        form: {
+          title: "JavaScript Frameworks",
+          description: "There are a lot of them"
+        }
+      };
+
+      request.post(options, (error, response, body) => {
+        expect(error).toBeNull();
+
+        Topic.findOne({
+          where: { id: this.topic.id }
+        })
+        .then(topic => {
+          expect(topic.title).toBe("JavaScript Frameworks");
+          done();
+        })
+      });
 
 
 
+    });
+  });
 });

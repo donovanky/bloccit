@@ -1,23 +1,23 @@
-const Topics = require("./models").Topics;
+const Topic = require("./models").Topic;
 
 module.exports = {
 
 //#1
   getAllTopics(callback){
-    return Topics.all()
+    return Topic.all()
 
 //#2
-    .then((topic) => {
-      callback(null, topic);
+    .then((topics) => {
+      callback(null, topics);
     })
     .catch((error) => {
       callback(error);
     })
   },
 
-  addTopics(newtopic, callback){
-  return Topics.create({
-    title: newtopic.title,
+  addTopics(newTopic, callback){
+  return Topic.create({
+    title: newTopic.title,
     description: newtopic.description
   })
   .then((topic) => {
@@ -29,7 +29,7 @@ module.exports = {
 },
 
 getTopics(id, callback){
-     return Topics.findById(id)
+     return Topic.findById(id)
      .then((topic) => {
        callback(null, topic);
      })
@@ -39,7 +39,7 @@ getTopics(id, callback){
    },
 
    deleteTopics(id, callback){
-     return Topics.destroy({
+     return Topic.destroy({
        where: {id}
      })
      .then((topic) => {
