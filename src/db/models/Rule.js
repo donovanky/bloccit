@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
       references: {
         model: "Topics",
         key: "id",
-        as: "TopicsId",
+        as: "topicId",
       }
     }
   }, {});
   Rule.associate = function(models) {
-    Rule.belongsTo(models.Topics, {
+    Rule.belongsTo(models.Topic, {
       foreignKey: "topicId",
       onDelete: "CASCADE",
     });
