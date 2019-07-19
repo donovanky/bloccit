@@ -23,7 +23,7 @@
     title: request.body.title,
     description: request.body.description
   };
-  TopicsQueries.addTopics(newtopic, (error, topic) => {
+  topicQueries.addTopics(newtopic, (error, topic) => {
     if(error){
       response.redirect(500, "/topic/new");
     } else {
@@ -33,7 +33,7 @@
 },
 show(request, response, next){
 //#1
-   TopicsQueries.getTopics(request.params.id, (error, topic) => {
+   topicQueries.getTopics(request.params.id, (error, topic) => {
 //#2
      if(error || topic == null){
        response.redirect(404, "/");
@@ -44,7 +44,7 @@ show(request, response, next){
  },
 
  destroy(request, response, next){
-      TopicsQueries.deleteTopics(request.params.id, (error, Topics) => {
+      topicQueries.deleteTopics(request.params.id, (error, Topics) => {
         if(error){
           response.redirect(500, `/topics/${Topics.id}`)
         } else {
