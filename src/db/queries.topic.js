@@ -16,19 +16,19 @@ module.exports = {
   },
 
   addTopics(newTopic, callback){
-  return Topic.create({
+    return Topic.create({
     title: newTopic.title,
     description: newTopic.description
-  })
-  .then((topic) => {
+      })
+    .then((topic) => {
     callback(null, topic);
-  })
-  .catch((error) => {
+      })
+    .catch((error) => {
     callback(error);
-  })
-},
+    })
+  },
 
-getTopics(id, callback){
+  getTopics(id, callback){
      return Topic.findById(id)
      .then((topic) => {
        callback(null, topic);
@@ -50,6 +50,23 @@ getTopics(id, callback){
      })
    },
 
+   updateTopic(id, updatedTopic, callback){
+     return Topic.findById(id)
+     .then((topic) => {
+       if(!topic){
+         return callback("Topic not found");
+       }
 
+       topic.update(updatedTopic, {
+         fields: Object.keys(updatedTopic)
+       })
+       .then(() => {
+         callback(null, topic);
+       })
+       .catch((err) => {
+         callback(err);
+       });
+     });
+   }
 
 }
