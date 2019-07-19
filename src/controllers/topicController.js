@@ -9,7 +9,7 @@
         if(error){
           response.redirect(500, "static/index");
         } else {
-          response.render("topics/index", {Topics});
+          response.render("topics/index", {topic});
         }
       })
    },
@@ -25,9 +25,9 @@
   };
   topicQueries.addTopics(newtopic, (error, topic) => {
     if(error){
-      response.redirect(500, "/topic/new");
+      response.redirect(500, "/topics/new");
     } else {
-      response.redirect(303, `/topic/${Topics.id}`);
+      response.redirect(303, `/topics/${Topics.id}`);
     }
   });
 },
@@ -38,13 +38,13 @@ show(request, response, next){
      if(error || topic == null){
        response.redirect(404, "/");
      } else {
-       response.render("topic/show", {topic});
+       response.render("topics/show", {topic});
      }
    });
  },
 
  destroy(request, response, next){
-      topicQueries.deleteTopics(request.params.id, (error, Topics) => {
+      topicQueries.deleteTopics(request.params.id, (error, topic) => {
         if(error){
           response.redirect(500, `/topics/${Topics.id}`)
         } else {
