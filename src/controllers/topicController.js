@@ -51,16 +51,26 @@ destroy(request, response, next){
      });
    },
 
-   update(req, res, next){
+   edit(request, response, next){
+     topicQueries.getTopics(request.params.id, (error, topic) => {
+       if(error || topic == null){
+         response.redirect(404, "/");
+       } else {
+         response.render("topics/edit", {topic});
+       }
+     });
+   },
+
+   update(request, response, next){
 
    //#1
-        topicQueries.updateTopic(req.params.id, req.body, (err, topic) => {
+        topicQueries.updateTopic(request.params.id, request.body, (error, topic) => {
 
    //#2
-          if(err || topic == null){
-            res.redirect(404, `/topics/${req.params.id}/edit`);
+          if(error || topic == null){
+            response.redirect(404, `/topics/${request.params.id}/edit`);
           } else {
-            res.redirect(`/topics/${topic.id}`);
+            request.redirect(`/topics/${topic.id}`);
           }
         });
       }
