@@ -24,6 +24,7 @@ module.exports = {
 },
  advertisementQueries.addAdvertisement(newAdvertisement, (error, advertisement) => {
    if(error){
+     console.log(error);
      response.redirect(500, "/advertisements/new");
    } else {
      response.redirect(303, `/advertisements/${advertisement.id}`);
