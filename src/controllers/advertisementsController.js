@@ -16,11 +16,12 @@ module.exports = {
      response.render("advertisements/new");
    },
 
-   create(request, response, next){
+  create(request, response, next){
      let newAdvertisement = {
-   title: request.body.title,
-   description: request.body.description
+     title: request.body.title,
+     description: request.body.description
  };
+},
  advertisementQueries.addAdvertisement(newAdvertisement, (error, advertisement) => {
    if(error){
      response.redirect(500, "/advertisements/new");
