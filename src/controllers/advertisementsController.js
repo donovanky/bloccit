@@ -1,4 +1,4 @@
-const advertisementQueries = require("../db/queries.advertisement.js");
+const advertisementQueries = require("../db/queries.advertisements.js");
 
 module.exports = {
   index(request, response, next){

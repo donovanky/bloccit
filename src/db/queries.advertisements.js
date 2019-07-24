@@ -15,7 +15,7 @@ module.exports = {
     })
   },
 
-  addAdvertisements(newAdvertisement, callback){
+  addAdvertisement(newAdvertisement, callback){
     return Advertisement.create({
     title: newAdvertisement.title,
     description: newAdvertisement.description
