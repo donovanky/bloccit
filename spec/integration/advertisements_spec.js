@@ -29,7 +29,6 @@ describe("routes : advertisements", () => {
         expect(response.statusCode).toBe(200);
         expect(error).toBeNull();
         expect(body).toContain("Advertisements");
-        expect(body).toContain("Advertisements");
         done();
       });
     });
@@ -87,9 +86,9 @@ describe("routes : advertisements", () => {
     it("should delete the topic with the associated ID", done => {
       Advertisement.findAll()
       .then(advertisement => {
-        const topicCountBeforeDelete = advertisement.length;
+        const advertisementCountBeforeDelete = advertisement.length;
 
-        expect(topicCountBeforeDelete).toBe(1);
+        expect(advertisementCountBeforeDelete).toBe(1);
 
         request.post(`${base}${this.advertisement.id}/destroy`, (error, response, body) => {
           Advertisement.findAll()

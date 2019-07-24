@@ -28,7 +28,7 @@ module.exports = {
     })
   },
 
-  getAdvertisements(id, callback){
+  getAdvertisement(id, callback){
      return Advertisement.findByPk(id)
      .then((advertisement) => {
        callback(null, advertisement);
@@ -38,7 +38,7 @@ module.exports = {
      })
    },
 
-   deleteAdvertisements(id, callback){
+   deleteAdvertisement(id, callback){
      return Advertisement.destroy({
        where: {id}
      })
