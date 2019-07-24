@@ -20,7 +20,7 @@ module.exports = {
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.Date
+        type: Sequelize.DATE
       },
       topicId:{
         type: Sequelize.INTEGER,
