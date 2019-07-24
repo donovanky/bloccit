@@ -3,7 +3,7 @@ const Advertisement = require("./models").Advertisement;
 module.exports = {
 
 //#1
-  getAllTopics(callback){
+  getAllAdvertisements(callback){
     return Advertisement.all()
 
 //#2
@@ -15,7 +15,7 @@ module.exports = {
     })
   },
 
-  addTopics(newTopic, callback){
+  addAdvertisements(newAdvertisement, callback){
     return Advertisement.create({
     title: newAdvertisement.title,
     description: newAdvertisement.description
@@ -28,7 +28,7 @@ module.exports = {
     })
   },
 
-  getTopics(id, callback){
+  getAdvertisements(id, callback){
      return Advertisement.findById(id)
      .then((advertisement) => {
        callback(null, advertisement);
@@ -38,7 +38,7 @@ module.exports = {
      })
    },
 
-   deleteTopics(id, callback){
+   deleteAdvertisements(id, callback){
      return Advertisement.destroy({
        where: {id}
      })
@@ -50,7 +50,7 @@ module.exports = {
      })
    },
 
-   updateTopic(id, updatedAdvertisement, callback){
+   updateAdvertisement(id, updatedAdvertisement, callback){
      return Advertisement.findById(id)
      .then((advertisement) => {
        if(!advertisement){
