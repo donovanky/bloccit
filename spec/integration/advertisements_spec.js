@@ -85,14 +85,14 @@ describe("routes : advertisements", () => {
 
   describe("POST /advertisements/:id/destroy", () => {
     it("should delete the topic with the associated ID", done => {
-      Advertisement.all()
+      Advertisement.findAll()
       .then(advertisement => {
         const topicCountBeforeDelete = advertisement.length;
 
         expect(topicCountBeforeDelete).toBe(1);
 
         request.post(`${base}${this.advertisement.id}/destroy`, (error, response, body) => {
-          Advertisement.all()
+          Advertisement.findAll()
           .then(advertisement => {
             expect(error).toBeNull();
             expect(advertisement.length).toBe(advertisementCountBeforeDelete - 1);
