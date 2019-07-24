@@ -9,8 +9,8 @@ describe("routes : advertisements", () => {
     this.advertisement;
     sequelize.sync({force: true}).then(response => {
       Advertisement.create({
-        title: "JS Frameworks",
-        description: "There is a lot of them"
+        title: "Buy our widget",
+        description: "On sale until Sunday"
       })
       .then(advertisement => {
         this.advertisement = advertisement;
@@ -28,7 +28,7 @@ describe("routes : advertisements", () => {
       request.get(base, (error, response, body) => {
         expect(response.statusCode).toBe(200);
         expect(error).toBeNull();
-        expect(body).toContain("Advertisements");
+        expect(body).toContain("Advertisement");
         done();
       });
     });
@@ -76,7 +76,7 @@ describe("routes : advertisements", () => {
     it("should render a view with the selected advertisement", done => {
       request.get(`${base}${this.advertisement.id}`, (error, response, body) => {
         expect(error).toBeNull();
-        expect(body).toContain("!!!");
+        expect(body).toContain("On sale until Sunday");
         done();
       });
     });
@@ -107,7 +107,7 @@ describe("routes : advertisements", () => {
       request.get(`${base}${this.advertisement.id}/edit`, (error, response, body) => {
         expect(error).toBeNull();
         expect(body).toContain("Edit Advertisement");
-        expect(body).toContain("!!!");
+        expect(body).toContain("Buy our widget");
         done();
       });
     });
