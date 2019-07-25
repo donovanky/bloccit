@@ -22,13 +22,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      topicId:{
+      advertisementId:{
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
-          model:"Topics",
+          model:"Advertisements",
           key: "id",
-          as: "topicsId",
+          as: "advertisementsId",
         },
       }
     });
