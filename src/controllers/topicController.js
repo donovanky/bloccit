@@ -71,7 +71,7 @@ destroy(request, response, next){
           if(error || topic == null){
             response.redirect(404, `/topics/${request.params.id}/edit`);
           } else {
-            request.redirect(`/topics/${topic.id}`);
+            response.redirect(`/topics/${topic.id}`);
           }
         });
       }
