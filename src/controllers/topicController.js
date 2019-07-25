@@ -5,6 +5,7 @@ module.exports = {
      topicQueries.getAllTopics((error, topics) => {
 //#3
        if(error){
+         console.log("This is the update error: " + error);
          response.redirect(500, "static/index");
        } else {
          response.render("topics/index", {topics});
