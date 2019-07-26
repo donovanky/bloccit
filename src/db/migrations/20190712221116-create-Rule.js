@@ -19,13 +19,13 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
-      topicId: {
+      topicsId: {
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
         references: {
-          model: "Topic",
+          model: "Topics",
           key: "id",
-          as: "topicId",
+          as: "TopicsId",
         },
       }
     });
