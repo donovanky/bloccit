@@ -7,8 +7,7 @@ describe("Topic", () => {
   beforeEach((done) => {
 //#1
     this.topic;
-    this.post1;
-    this.post2;
+    this.post;
 
     sequelize.sync({force: true}).then((response) => {
       Topic.create({
@@ -24,17 +23,9 @@ describe("Topic", () => {
            topicId: this.topic.id
          })
          .then((post) => {
-           this.post1 = post;
+           this.post = post;
            done();
          });
-        Post.create({
-          title: "Alaska",
-          body: "I went on a solo trip",
-          topicId: this.topic.id
-        }).then(post => {
-          this.post2 = post;
-          done();
-        });
       })
         .catch(error => {
           console.log(error);
@@ -62,12 +53,10 @@ describe("#create()", () => {
     it("should retrieve the posts attached to the topic", done => {
       this.topic.getPosts()
       .then(associatedPosts => {
+        console.log(associatedPosts);
         expect(associatedPosts[0].title).toBe("Albuquerque");
         expect(associatedPosts[0].body).toBe("I took a wrong turn");
 
-        expect(associatedPosts[1].title).toBe("Alaska");
-        expect(associatedPosts[1].body).toBe("I went on a solo trip");
-        console.log(associatedPosts[1].title, associatedPosts[1].body);
         done();
       })
       .catch(error => {
