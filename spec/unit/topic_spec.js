@@ -53,7 +53,6 @@ describe("#create()", () => {
     it("should retrieve the posts attached to the topic", done => {
       this.topic.getPosts()
       .then(associatedPosts => {
-        console.log(associatedPosts);
         expect(associatedPosts[0].title).toBe("Albuquerque");
         expect(associatedPosts[0].body).toBe("I took a wrong turn");
 
