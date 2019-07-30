@@ -18,4 +18,47 @@ module.exports = {
       }
     });
   },
+
+  show(request, response, next){
+    postQueries.getPost(request.params.id, (error, post) => {
+      if(error || post == null){
+        response.redirect(404, "/");
+      } else {
+        response.render("posts/show", {post});
+      }
+    });
+  },
+
+  edit(request, response, next){
+    postQueries.getPost(request.params.id, (error, post) => {
+      if(error || post == null){
+        response.redirect(404, "/");
+      } else {
+        response.render("posts/edit", {post});
+      }
+    });
+  },
+
+  destroy(request, response, next){
+  postQueries.deletePost(request.params.id, (error, deletedRecordsCount) => {
+    if(error){
+      response.redirect(500, `/topics/${request.params.topicId}/posts/${request.params.id}`)
+    } else {
+      response.redirect(303, `/topics/${request.params.topicId}`)
+    }
+  });
+},
+
+update(request, response, next){
+  postQueries.updatePost(request.params.id, request.body, (error, post) => {
+    if(error || post == null){
+      response.redirect(404, `/topics/${request.params.topicId}/posts/${request.params.id}/edit`);
+    } else {
+      response.redirect(`/topics/${request.params.topicId}/posts/${request.params.id}`);
+    }
+  });
+},
+
+
+
 }
