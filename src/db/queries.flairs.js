@@ -4,33 +4,28 @@ const Flair = require("./models").Flair;
 
 module.exports = {
 
-  addPost(newPost, callback){
-       return Post.create(newPost)
-       .then((post) => {
-         callback(null, post);
+  addFlair(newFlair, callback){
+       return Flair.create(newFlair)
+       .then((flair) => {
+         callback(null, flair);
        })
        .catch((error) => {
          callback(error);
        })
      },
 
-  getPost(id, callback){
-    return Post.findByPk(id, {
-      include: [{
-        model: Flair,
-        as: "flairs"
-      }]
-    })
-    .then((post) => {
-      callback(null, post);
+  getFlair(id, callback){
+    return Flair.findByPk(id)
+    .then((flair) => {
+      callback(null, flair);
     })
     .catch((error) => {
       callback(error);
     })
   },
 
-  deletePost(id, callback){
-      return Post.destroy({
+  deleteFlair(id, callback){
+      return Flair.destroy({
         where: { id }
       })
       .then((deletedRecordsCount) => {
@@ -41,15 +36,15 @@ module.exports = {
       })
     },
 
-  updatePost(id, updatedPost, callback){
-    return Post.findByPk(id)
-    .then((post) => {
-      if(!post){
-        return callback("Post not found");
+  updateFlair(id, updatedFlair, callback){
+    return Flair.findByPk(id)
+    .then((flair) => {
+      if(!flair){
+        return callback("Flair not found");
       }
 
-      post.update(updatedPost, {
-        fields: Object.keys(updatedPost)
+      flair.update(updatedFlair, {
+        fields: Object.keys(updatedFlair)
       })
       .then(() => {
         callback(null, post);
