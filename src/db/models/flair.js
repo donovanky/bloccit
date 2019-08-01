@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
 
 //#3
     Flair.belongsTo(models.Post, {
-      foreignKey: "topicId",
+      foreignKey: "postId",
       onDelete: "CASCADE"
     });
   };
