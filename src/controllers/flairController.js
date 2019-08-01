@@ -19,7 +19,7 @@ module.exports = {
       if(error){
         response.redirect(500, "/flairs/new");
       } else {
-        response.redirect(303, `/posts/${newFlair.postId}/flairs/${flair.id}`);
+        response.redirect(303, `/topics/${newFlair.topicId}/posts/${newFlair.postId}/flairs/${flair.id}`);
       }
     });
   },
@@ -51,9 +51,9 @@ module.exports = {
   destroy(request, response, next){
   flairQueries.deleteFlair(request.params.id, (error, deletedRecordsCount) => {
     if(error){
-      response.redirect(500, `/posts/${request.params.postId}/flair/${request.params.id}`)
+      response.redirect(500, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flair/${request.params.id}`)
     } else {
-      response.redirect(303, `/posts/${request.params.postId}`)
+      response.redirect(303, `/topics/${newFlair.topicId}/posts/${request.params.postId}`)
     }
   });
 },
@@ -61,9 +61,9 @@ module.exports = {
 update(request, response, next){
   flairQueries.updateFlair(request.params.id, request.body, (error, flair) => {
     if(error || flair == null){
-      response.redirect(404, `/posts/${request.params.postId}/flairs/${request.params.id}/edit`);
+      response.redirect(404, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}/edit`);
     } else {
-      response.redirect(`/posts/${request.params.postId}/flairs/${request.params.id}`);
+      response.redirect(`/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}`);
     }
   });
 },
