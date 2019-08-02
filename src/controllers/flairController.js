@@ -49,7 +49,7 @@ module.exports = {
   },
 
   destroy(request, response, next){
-  flairQueries.deleteFlair(request.params.id, (error, deletedRecordsCount) => {
+  flairQueries.deleteFlair(request.params.id, (error, flair) => {
     if(error){
       response.redirect(500, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}`);
     } else {

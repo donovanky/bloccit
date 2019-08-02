@@ -28,8 +28,8 @@ module.exports = {
       return Flair.destroy({
         where: { id }
       })
-      .then((deletedRecordsCount) => {
-        callback(null, deletedRecordsCount);
+      .then((flair) => {
+        callback(null, flair);
       })
       .catch((error) => {
         callback(error);

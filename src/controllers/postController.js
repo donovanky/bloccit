@@ -40,7 +40,7 @@ module.exports = {
   },
 
   destroy(request, response, next){
-  postQueries.deletePost(request.params.id, (error, deletedRecordsCount) => {
+  postQueries.deletePost(request.params.id, (error, flair) => {
     if(error){
       response.redirect(500, `/topics/${request.params.topicId}/posts/${request.params.id}`);
     } else {
