@@ -68,7 +68,7 @@ describe("routes : flairs", () => {
           request.post(options,
             (error, response, body) => {
 
-              Flair.findOne({where: {title: "Base flair"}})
+              Flair.findOne({where: {name: "Base flair"}})
               .then((flair) => {
                 expect(flair).not.toBeNull();
                 expect(flair.name).toBe("Base flair");
