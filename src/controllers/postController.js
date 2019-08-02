@@ -42,9 +42,9 @@ module.exports = {
   destroy(request, response, next){
   postQueries.deletePost(request.params.id, (error, deletedRecordsCount) => {
     if(error){
-      response.redirect(500, `/topics/${request.params.topicId}/posts/${request.params.id}`)
+      response.redirect(500, `/topics/${request.params.topicId}/posts/${request.params.id}`);
     } else {
-      response.redirect(303, `/topics/${request.params.topicId}`)
+      response.redirect(303, `/topics/${request.params.topicId}`);
     }
   });
 },

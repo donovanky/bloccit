@@ -51,7 +51,7 @@ module.exports = {
   destroy(request, response, next){
   flairQueries.deleteFlair(request.params.id, (error, deletedRecordsCount) => {
     if(error){
-      response.redirect(500, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flair/${request.params.id}`)
+      response.redirect(500, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}`);
     } else {
       response.redirect(303, `/topics/${newFlair.topicId}/posts/${request.params.postId}`)
     }
