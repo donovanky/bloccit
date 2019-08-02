@@ -137,7 +137,7 @@ describe("routes : flairs", () => {
 
         it("should update the flair with the given values", (done) => {
             const options = {
-              url: `${base}/${this.topic.id}/posts/${this.post.id}/posts/${this.flair.id}/update`,
+              url: `${base}/${this.topic.id}/posts/${this.post.id}/flairs/${this.flair.id}/update`,
               form: {
                 name: "Unhelpful",
                 color: "blue"
