@@ -27,7 +27,7 @@ module.exports = {
   show(request, response, next){
     flairQueries.getFlair(request.params.id, (error, flair) => {
       if(error || flair == null){
-        response.redirect(404, "/");
+        response.redirect(404, "/flair/");
       } else {
         response.render("flairs/show", {
           flair,
@@ -41,7 +41,7 @@ module.exports = {
   edit(request, response, next){
     flairQueries.getFlair(request.params.id, (error, flair) => {
       if(error || flair == null){
-        response.redirect(404, "/");
+        response.redirect(404, "/flair/");
       } else {
         response.render("flairs/edit", {flair});
       }
@@ -51,7 +51,7 @@ module.exports = {
   destroy(request, response, next){
   flairQueries.deleteFlair(request.params.id, (error, flair) => {
     if(error){
-      response.redirect(500, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}`);
+      response.redirect(500, /flair/);
     } else {
       response.redirect(303, `/topics/${newFlair.topicId}/posts/${request.params.postId}`)
     }
@@ -61,7 +61,7 @@ module.exports = {
 update(request, response, next){
   flairQueries.updateFlair(request.params.id, request.body, (error, flair) => {
     if(error || flair == null){
-      response.redirect(404, `/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}/edit`);
+      response.redirect(404, `/flair/`);
     } else {
       response.redirect(`/topics/${newFlair.topicId}/posts/${request.params.postId}/flairs/${request.params.id}`);
     }
