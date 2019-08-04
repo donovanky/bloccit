@@ -4,6 +4,17 @@ const Flair = require("./models").Flair;
 
 module.exports = {
 
+  getAllFlairs(callback){
+    return Flair.findAll()
+
+    .then((flairs) => {
+      callback(null, flairs);
+    })
+    .catch((error) => {
+      callback(error);
+    })
+  },
+
   addFlair(newFlair, callback){
        return Flair.create(newFlair)
        .then((flair) => {
