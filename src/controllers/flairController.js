@@ -14,9 +14,9 @@ module.exports = {
   },
 
   new(request, response, next){
-     response.render("flairs/new", {
-       //topicId: request.params.topicId,
-       //postId: request.params.postId
+     response.render("topics/:topicId/posts/:postId/flairs/new", {
+       topicId: request.params.topicId,
+       postId: request.params.postId
      });
    },
 
