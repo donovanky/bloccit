@@ -2,7 +2,7 @@ const express = require("express");
 const flairController = require("../controllers/flairController");
 const router = express.Router();
 
-router.get("/flairs/", flairController.index);
+router.get("/flairs", flairController.index);
 router.get("/flairs/new", flairController.new);
 //router.get("/topics/:topicId/posts/:postId/flairs/:id", flairController.show);
 router.get("/flairs/:id", flairController.show);

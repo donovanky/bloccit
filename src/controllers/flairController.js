@@ -40,7 +40,7 @@ module.exports = {
     flairQueries.getFlair(request.params.id, (error, flair) => {
       if(error || flair == null){
         console.log(error);
-        response.redirect(404, "/flairs/");
+        response.redirect(404, "/flairs");
       } else {
         response.render("flairs/show", {
           flair,
