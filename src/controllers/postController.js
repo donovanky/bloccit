@@ -12,7 +12,7 @@ module.exports = {
     };
     postQueries.addPost(newPost, (error, post) => {
       if(error){
-        response.redirect(500, "/posts/new");
+        response.redirect(500, `/topics/${request.params.topicId}/posts/new`);
       } else {
         response.redirect(303, `/topics/${newPost.topicId}/posts/${post.id}`);
       }
@@ -24,7 +24,7 @@ module.exports = {
       if(error || post == null){
         response.redirect(404, "/");
       } else {
-        response.render("posts/show", {post});
+        response.render(`/topics/${request.params.topicId}/posts/show", {post}`);
       }
     });
   },
@@ -34,7 +34,7 @@ module.exports = {
       if(error || post == null){
         response.redirect(404, "/");
       } else {
-        response.render("posts/edit", {post});
+        response.render(`/topics/${request.params.topicId}/posts/edit", {post}`);
       }
     });
   },

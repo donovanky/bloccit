@@ -4,7 +4,7 @@ const Flair = require("./models").Flair;
 
 module.exports = {
 
-  getAllFlairs(callback){
+  getFlair(callback){
     return Flair.findAll()
 
     .then((flairs) => {

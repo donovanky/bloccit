@@ -3,7 +3,7 @@ const flairQueries = require("../db/queries.flairs.js")
 
 module.exports = {
   index(request, response, next){
-    flairQueries.getAllFlairs((error, flairs) => {
+    flairQueries.getFlair((error, flairs) => {
       if(error){
         console.log(error)
         response.redirect(500, "static/index");
@@ -14,7 +14,7 @@ module.exports = {
   },
 
   new(request, response, next){
-     response.render("topics/:topicId/posts/:postId/flairs/new", {
+     response.render("flairs/new", {
        topicId: request.params.topicId,
        postId: request.params.postId
      });
@@ -24,14 +24,14 @@ module.exports = {
     let newFlair= {
       name: request.body.name,
       color: request.body.color,
-      //topicId: request.params.topicId,
-      //postId: request.params.postId
+      topicId: request.params.topicId,
+      postId: request.params.postId
     };
     flairQueries.addFlair(newFlair, (error, flair) => {
       if(error){
         response.redirect(500, "/flairs/new");
       } else {
-        response.redirect(303, `/flairs/${flair.id}`);
+        response.redirect(303, `/topics/${flair.topicId}/posts/${flair.postId}/flairs/${flair.id}`);
       }
     });
   },

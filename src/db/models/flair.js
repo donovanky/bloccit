@@ -11,7 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
 
-//#2
+    topicId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+
     postId: {
       type: DataTypes.INTEGER,
       allowNull: false
