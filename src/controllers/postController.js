@@ -24,7 +24,7 @@ module.exports = {
       if(error || post == null){
         response.redirect(404, "/");
       } else {
-        response.render(`/topics/${request.params.topicId}/posts/show", {post}`);
+        response.render("posts/show", {post});
       }
     });
   },
