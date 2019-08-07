@@ -2,6 +2,7 @@ const postQueries = require("../db/queries.posts.js");
 
 module.exports = {
   new(request, response, next){
+    console.log(request.params);
      response.render("posts/new", {topicId: request.params.topicId});
    },
   create(request, response, next){
