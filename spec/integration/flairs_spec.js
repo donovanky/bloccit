@@ -34,6 +34,7 @@ describe("routes : flairs", () => {
           Flair.create({
             name: "Helpful",
             color: "Green",
+            topicId:this.topic.id,
             postId: this.post.id
           })
           .then(flair => {
