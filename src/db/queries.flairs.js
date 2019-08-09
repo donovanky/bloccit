@@ -58,9 +58,11 @@ module.exports = {
         fields: Object.keys(updatedFlair)
       })
       .then(() => {
-        callback(null, post);
+        callback(null, flair);
       })
       .catch((error) => {
+        console.log(error);
+        console.log(updatedFlair);
         callback(error);
       });
     });

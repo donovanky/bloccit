@@ -35,7 +35,7 @@ module.exports = {
       if(error || post == null){
         response.redirect(404, "/");
       } else {
-        response.render(`/topics/${request.params.topicId}/posts/edit", {post}`);
+        response.render(`posts/edit`, {post});
       }
     });
   },

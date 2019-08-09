@@ -49,6 +49,7 @@ describe("routes : flairs", () => {
 
       it("should render a new flair form", (done) => {
         request.get(`${base}/${this.topic.id}/posts/${this.post.id}/flairs/new`, (error, response, body) => {
+          console.log(error)
           expect(error).toBeNull();
           expect(body).toContain("New Flair");
           done();

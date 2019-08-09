@@ -71,6 +71,8 @@ describe("routes : topics", () => {
       });
     });
 
+
+
   });
 
   describe("GET /topics/:id", () => {
@@ -123,10 +125,8 @@ describe("routes : topics", () => {
           description: "There are a lot of them"
         }
       };
-
       request.post(options, (error, response, body) => {
         expect(error).toBeNull();
-
         Topic.findOne({
           where: { id: this.topic.id }
         })

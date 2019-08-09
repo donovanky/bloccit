@@ -5,7 +5,6 @@ module.exports = {
   index(request, response, next){
     flairQueries.getFlair((error, flairs) => {
       if(error){
-        console.log(error)
         response.redirect(500, "static/index");
       } else {
         response.render("flairs/index", {flairs});
@@ -29,6 +28,7 @@ module.exports = {
     };
     flairQueries.addFlair(newFlair, (error, flair) => {
       if(error){
+        console.log(error)
         response.redirect(500, "/flairs/new");
       } else {
         response.redirect(303, `/topics/${flair.topicId}/posts/${flair.postId}/flairs/${flair.id}`);
@@ -66,7 +66,7 @@ module.exports = {
     if(error){
       response.redirect(500, "/flairs/:id");
     } else {
-      response.redirect(303, `/flairs/`)
+      response.redirect(303, `/topics/${request.params.topicId}/posts/${request.params.postId}`)
     }
   });
 },
@@ -76,7 +76,7 @@ update(request, response, next){
     if(error || flair == null){
       response.redirect(404, `/flairs/`);
     } else {
-      response.redirect(`/flairs/${request.params.id}`);
+      response.redirect(`/topics/${flair.topicId}/posts/${flair.postId}/flairs/${flair.id}`);
     }
   });
 },
