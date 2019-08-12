@@ -70,10 +70,32 @@ describe("routes : topics", () => {
         });
       });
     });
-
-
-
   });
+
+  it("should not create a new post that fails validations", (done) => {
+    const options = {
+      url: `${base}create`,
+      form: {
+        title: "ab",
+        body: "bc"
+      }
+    };
+    request.post(options,
+      (error, response, body) => {
+        Topic.findOne({where: {title: "ab"}})
+        .then((topic) => {
+            expect(topic).toBeNull();
+            done();
+        })
+        .catch((error) => {
+          console.log(error);
+          done();
+        });
+      }
+    );
+  });
+
+
 
   describe("GET /topics/:id", () => {
     it("should render a view with the selected topic", done => {
@@ -117,6 +139,7 @@ describe("routes : topics", () => {
   });
 
   describe("POST /topics/:id/update", () => {
+
     it("should update the topic with the given values", done => {
       const options = {
         url: `${base}${this.topic.id}/update`,
@@ -131,13 +154,14 @@ describe("routes : topics", () => {
           where: { id: this.topic.id }
         })
         .then(topic => {
-          expect(topic.title).toBe("JavaScript Frameworks");
+          expect(topic.title).toBe("JS Frameworks");
           done();
         })
       });
-
-
-
     });
+
+
+
+
   });
 });

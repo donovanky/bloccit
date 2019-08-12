@@ -10,8 +10,8 @@
     <ul>
 
 <!-- #3 -->
-      <% messages.error.forEach((err) => { %>
-        <li><%= `${err.param} ${err.msg}` %></li>
+      <% messages.error.forEach((error) => { %>
+        <li><%= `${error.param} ${error.msg}` %></li>
       <% }) %>
     </ul>
   </div>
