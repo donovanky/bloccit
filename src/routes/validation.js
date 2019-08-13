@@ -15,7 +15,6 @@ module.exports = {
   },
   validateTopics(request, response, next) {
     if(request.method === "POST") {
-      request.checkParams("topicId", "must be valid").notEmpty().isInt();
       request.checkBody("title", "must be at least 5 characters in length").isLength({min: 5});
       request.checkBody("description", "must be at least 10 characters in length").isLength({min: 10});
     }
