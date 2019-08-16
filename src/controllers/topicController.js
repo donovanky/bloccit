@@ -74,6 +74,6 @@ destroy(request, response, next){
             response.redirect(`/topics/${topic.id}`);
           }
         });
-      }
+      },
 
 }

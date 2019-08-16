@@ -1,5 +1,4 @@
-
- const RuleQueries = require("../db/queries.Rule.js");
+const RuleQueries = require("../db/queries.Rule.js");
 
  module.exports = {
    index(request, response, next){
