@@ -23,6 +23,7 @@ module.exports = {
   show(request, response, next){
     postQueries.getPost(request.params.id, (error, post) => {
       if(error || post == null){
+        console.log(error);
         response.redirect(404, "/");
       } else {
         response.render("posts/show", {post});
