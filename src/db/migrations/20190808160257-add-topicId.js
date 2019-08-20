@@ -12,6 +12,7 @@ module.exports = {
      },
 
   down: (queryInterface, Sequelize) => {
-    //return queryInterface.dropTable('');
+    return queryInterface.removeColumn("Flairs", "topicId");
+
   }
 };
