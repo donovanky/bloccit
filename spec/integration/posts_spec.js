@@ -25,7 +25,8 @@ describe("routes : posts", () => {
         Post.create({
           title: "Snowball Fighting",
           body: "So much snow!",
-          topicId: this.topic.id
+          topicId: this.topic.id,
+          userId: this.user.id
         })
         .then((post) => {
           this.post = post;
