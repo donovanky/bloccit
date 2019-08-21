@@ -1,6 +1,7 @@
 const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
+const User = require("../../src/db/models").User;
 
 describe("Post", () => {
 
@@ -17,25 +18,31 @@ describe("Post", () => {
       })
       .then((topic) => {
         this.topic = topic;
-//#3
-        Post.create({
-          title: "My first visit to Proxima Centauri b",
-          body: "I saw some rocks.",
-//#4
-          topicId: this.topic.id
-        })
-        .then((post) => {
-          this.post = post;
-          done();
-        });
       })
-      .catch((error) => {
+//#3
+    User.create({
+      email: "starman@tesla.com",
+      password: "Trekkie4lyfe"
+      }).then(user => {
+          this.user = user;
+
+      Post.create({
+        title: "Snowball Fighting",
+        body: "So much snow!",
+        topicId: this.topic.id,
+        userId: this.user.id
+      })
+        .then(post => {
+        this.post = post;
+        done();
+      })
+      .catch(error => {
         console.log(error);
         done();
       });
-    });
+      });
 
-  });
+    });
 
   describe("#create()", () => {
 

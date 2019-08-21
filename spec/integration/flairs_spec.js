@@ -6,6 +6,7 @@ const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 const Flair = require("../../src/db/models").Flair;
+const User = require("../../src/db/models").User;
 
 describe("routes : flairs", () => {
 
@@ -23,13 +24,26 @@ describe("routes : flairs", () => {
       .then((topic) => {
         this.topic = topic;
 
-        Post.create({
-          title: "Where's the potatoes",
-          body: "Thats pretty vague OP!",
-          topicId: this.topic.id
-        })
-        .then((post) => {
-          this.post = post;
+        User.create({
+          email: "starman@tesla.com",
+          password: "Trekkie4lyfe"
+        }).then(user => {
+          this.user = user;
+
+          Post.create({
+            title: "Snowball Fighting",
+            body: "So much snow!",
+            topicId: this.topic.id,
+            userId: this.user.id
+          })
+            .then(post => {
+              this.post = post;
+              done();
+            })
+            .catch(error => {
+              console.log(error);
+              done();
+            });
 
           Flair.create({
             name: "Helpful",
