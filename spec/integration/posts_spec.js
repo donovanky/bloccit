@@ -21,7 +21,7 @@ describe("routes : posts", () => {
       })
       .then((topic) => {
         this.topic = topic;
-        )}
+      })
         User.create({
           email: "starman@tesla.com",
           password:"Trekkie4lyfe"
@@ -42,7 +42,7 @@ describe("routes : posts", () => {
         .catch((error) => {
           console.log(error);
           done();
-          })
+          });
         });
       });
     });
@@ -192,5 +192,4 @@ describe("routes : posts", () => {
 
 
 
-  });
 });
