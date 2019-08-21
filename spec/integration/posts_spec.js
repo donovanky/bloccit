@@ -7,45 +7,41 @@ const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 
 describe("routes : posts", () => {
-
-  beforeEach((done) => {
+  beforeEach(done => {
     this.topic;
     this.post;
 
-    sequelize.sync({force: true}).then((response) => {
-
-//#1
+    sequelize.sync({ force: true }).then(response => {
+      //#1
       Topic.create({
         title: "Winter Games",
         description: "Post your Winter Games stories."
-      })
-      .then((topic) => {
+      }).then(topic => {
         this.topic = topic;
-      })
         User.create({
           email: "starman@tesla.com",
-          password:"Trekkie4lyfe"
-        })
-        .then((user) => {
+          password: "Trekkie4lyfe"
+        }).then(user => {
           this.user = user;
 
-        Post.create({
-          title: "Snowball Fighting",
-          body: "So much snow!",
-          topicId: this.topic.id,
-          userId: this.user.id
-        })
-        .then((post) => {
-          this.post = post;
-          done();
-        })
-        .catch((error) => {
-          console.log(error);
-          done();
-          });
+          Post.create({
+            title: "Snowball Fighting",
+            body: "So much snow!",
+            topicId: this.topic.id,
+            userId: this.user.id
+          })
+            .then(post => {
+              this.post = post;
+              done();
+            })
+            .catch(error => {
+              console.log(error);
+              done();
+            });
         });
       });
     });
+  });
 
     describe("GET /topics/:topicId/posts/new", () => {
 
