@@ -21,14 +21,14 @@ describe("routes : posts", () => {
       })
       .then((topic) => {
         this.topic = topic;
-
+        )}
         User.create({
           email: "starman@tesla.com",
           password:"Trekkie4lyfe"
         })
         .then((user) => {
           this.user = user;
-        })
+
         Post.create({
           title: "Snowball Fighting",
           body: "So much snow!",
@@ -42,6 +42,7 @@ describe("routes : posts", () => {
         .catch((error) => {
           console.log(error);
           done();
+          })
         });
       });
     });
