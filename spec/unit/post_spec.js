@@ -41,7 +41,6 @@ describe("routes : posts", () => {
     });
   });
 
-
   describe("#setTopic()", () => {
 
     it("should associate a topic and a post together", (done) => {

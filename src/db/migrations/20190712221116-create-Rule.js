@@ -25,7 +25,7 @@ module.exports = {
         references: {
           model: "Topics",
           key: "id",
-          as: "TopicsId",
+          as: "topicsId",
         },
       }
     });
