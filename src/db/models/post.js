@@ -19,7 +19,13 @@ module.exports = (sequelize, DataTypes) => {
     topicId: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+
+    postId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
+
 
   }, {});
   Post.associate = function(models) {
