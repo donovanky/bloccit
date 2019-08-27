@@ -63,6 +63,7 @@ describe("routes : flairs", () => {
     describe("GET /posts/:postId/flairs/new", () => {
 
       it("should render a new flair form", (done) => {
+        console.log(this.topic, this.post);
         request.get(`${base}/${this.topic.id}/posts/${this.post.id}/flairs/new`, (error, response, body) => {
           console.log(error)
           expect(error).toBeNull();
@@ -124,7 +125,7 @@ describe("routes : flairs", () => {
        });
      });
 
-     describe("POST /posts/:postId/flairs/:id/destroy", () => {
+     describe("POST /topics/:topicId/posts/:postId/flairs/:id/destroy", () => {
         it("should delete the flair with the associated ID", (done) => {
           expect(this.flair.id).toBe(1);
           request.post(`${base}/${this.topic.id}/posts/${this.post.id}/flairs/${this.flair.id}/destroy`, (error, response, body) => {
@@ -138,7 +139,7 @@ describe("routes : flairs", () => {
         });
       });
 
-    describe("POST /posts/:postId/flairs/:id/update", () => {
+    describe("POST /topics/:topicId/posts/:postId/flairs/:id/update", () => {
         it("should return a status code 302", (done) => {
           request.post({
             url: `${base}/${this.topic.id}/posts/${this.post.id}/flairs/${this.flair.id}/update`,
