@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   var Rule = sequelize.define('Rule', {
     description: DataTypes.STRING,
-    TopicsId: {
+    TopicId: {
       type: DataTypes.INTEGER,
       onDelete: "CASCADE",
       references: {
