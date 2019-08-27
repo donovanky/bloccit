@@ -24,13 +24,11 @@ describe("routes : flairs", () => {
       })
       .then((topic) => {
         this.topic = topic;
-
         User.create({
           email: "starman@tesla.com",
           password: "Trekkie4lyfe"
         }).then(user => {
           this.user = user;
-
           Post.create({
             title: "Snowball Fighting",
             body: "So much snow!",
@@ -42,7 +40,7 @@ describe("routes : flairs", () => {
               done();
             })
             .catch(error => {
-              console.log(error);
+              console.log("Error happened ", error)
               done();
             });
 
@@ -63,9 +61,7 @@ describe("routes : flairs", () => {
     describe("GET /posts/:postId/flairs/new", () => {
 
       it("should render a new flair form", (done) => {
-        console.log(this.topic, this.post);
         request.get(`${base}/${this.topic.id}/posts/${this.post.id}/flairs/new`, (error, response, body) => {
-          console.log(error)
           expect(error).toBeNull();
           expect(body).toContain("New Flair");
           done();
@@ -95,7 +91,6 @@ describe("routes : flairs", () => {
                 done();
               })
               .catch((error) => {
-                console.log(error);
                 done();
               });
             }

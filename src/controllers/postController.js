@@ -2,7 +2,6 @@ const postQueries = require("../db/queries.posts.js");
 
 module.exports = {
   new(request, response, next){
-    console.log(request.params.topicId);
      response.render("posts/new", {topicId: request.params.topicId});
    },
   create(request, response, next){
@@ -23,7 +22,7 @@ module.exports = {
   show(request, response, next){
     postQueries.getPost(request.params.id, (error, post) => {
       if(error || post == null){
-        console.log(error);
+
         response.redirect(404, "/");
       } else {
         response.render("posts/show", {post});

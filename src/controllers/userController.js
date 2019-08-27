@@ -7,7 +7,6 @@ module.exports = {
   },
 
   create(request, response, next){
-    console.log("enter controller");
 //#1
      let newUser = {
        email: request.body.email,
@@ -52,6 +51,6 @@ module.exports = {
      response.redirect("/");
    },
 
-   
+
 
 }

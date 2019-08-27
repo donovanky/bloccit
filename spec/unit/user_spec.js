@@ -10,7 +10,7 @@ describe("User", () => {
       done();
     })
     .catch((error) => {
-      console.log(error);
+      
       done();
     });
 
@@ -30,7 +30,7 @@ describe("User", () => {
         done();
       })
       .catch((error) => {
-        console.log(error);
+        
         done();
       });
     });
@@ -85,7 +85,7 @@ describe("User", () => {
         done();
       })
       .catch((error) => {
-        console.log(error);
+        
         done();
       });
     });

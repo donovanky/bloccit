@@ -17,7 +17,6 @@ describe("routes : topics", () => {
         done();
       })
       .catch(error => {
-        console.log(error);
         done();
       });
     });
@@ -56,7 +55,6 @@ describe("routes : topics", () => {
 
     it("should create a new topic and redirect", done => {
       request.post(options, (error, response, body) => {
-        console.log(body);
         Topic.findOne({where: {title: "blink-182 songs"}})
         .then(topic => {
           expect(response.statusCode).toBe(303);
@@ -65,7 +63,6 @@ describe("routes : topics", () => {
           done();
         })
         .catch(error => {
-          console.log(error);
           done();
         });
       });
@@ -88,7 +85,6 @@ describe("routes : topics", () => {
             done();
         })
         .catch((error) => {
-          console.log(error);
           done();
         });
       }

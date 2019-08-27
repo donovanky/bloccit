@@ -13,7 +13,7 @@ describe("routes : users", () => {
       done();
     })
     .catch((error) => {
-      console.log(error);
+
       done();
     });
 
@@ -55,7 +55,7 @@ describe("routes : users", () => {
              done();
            })
            .catch((error) => {
-             console.log(error);
+
              done();
            });
          }
@@ -79,7 +79,7 @@ describe("routes : users", () => {
              done();
            })
            .catch((error) => {
-             console.log(error);
+
              done();
            });
          }

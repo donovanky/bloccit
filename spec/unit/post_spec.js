@@ -33,7 +33,7 @@ describe("routes : posts", () => {
               done();
             })
             .catch(error => {
-              console.log(error);
+
               done();
             });
         });

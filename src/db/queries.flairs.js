@@ -61,8 +61,7 @@ module.exports = {
         callback(null, flair);
       })
       .catch((error) => {
-        console.log(error);
-        console.log(updatedFlair);
+        
         callback(error);
       });
     });

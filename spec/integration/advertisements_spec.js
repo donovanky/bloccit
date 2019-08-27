@@ -17,7 +17,6 @@ describe("routes : advertisements", () => {
         done();
       })
       .catch(error => {
-        console.log(error);
         done();
       });
     });
@@ -55,7 +54,6 @@ describe("routes : advertisements", () => {
 
     it("should create a new advertisement and redirect", done => {
       request.post(options, (error, response, body) => {
-        console.log(body);
         Advertisement.findOne({where: {title: "blink-182 songs"}})
         .then(advertisement => {
           expect(response.statusCode).toBe(303);
@@ -64,7 +62,6 @@ describe("routes : advertisements", () => {
           done();
         })
         .catch(error => {
-          console.log(error);
           done();
         });
       });
