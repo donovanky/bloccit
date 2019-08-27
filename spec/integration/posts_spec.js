@@ -11,6 +11,7 @@ describe("routes : posts", () => {
   beforeEach(done => {
     this.topic;
     this.post;
+    this.user;
 
     sequelize.sync({ force: true }).then(response => {
       //#1

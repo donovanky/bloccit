@@ -14,6 +14,7 @@ describe("routes : flairs", () => {
     this.topic;
     this.post;
     this.flair;
+    this.user;
 
     sequelize.sync({force: true}).then((response) => {
 
