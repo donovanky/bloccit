@@ -5,10 +5,12 @@ module.exports = {
      response.render("posts/new", {topicId: request.params.topicId});
    },
   create(request, response, next){
+
     let newPost= {
       title: request.body.title,
       body: request.body.body,
-      topicId: request.params.topicId
+      topicId: request.params.topicId,
+      userId: request.params.userId
     };
     postQueries.addPost(newPost, (error, post) => {
       if(error){
