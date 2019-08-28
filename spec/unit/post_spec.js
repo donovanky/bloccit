@@ -38,6 +38,10 @@ describe("routes : posts", () => {
                  this.post = topic.posts[0]; //store the post
                  done();
                })
+               .catch(error) => {
+               console.log(error);
+               done();
+              });
              })
            });
          });
