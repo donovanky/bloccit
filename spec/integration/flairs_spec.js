@@ -47,7 +47,6 @@ describe("routes : flairs", () => {
                 .then(flair => {
                   this.flair = flair;
                 done();
-              done();
             })
             .catch(error => {
               console.log("Error happened ", error)
