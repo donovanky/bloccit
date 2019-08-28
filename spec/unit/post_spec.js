@@ -59,10 +59,10 @@ describe("routes : posts", () => {
              expect(post.topicId).toBe(this.topic.id);
              expect(post.userId).toBe(this.user.id);
              done();
+           })
              .catch((error) => {
                console.log(error);
                done();
-             });
            });
          });
 
