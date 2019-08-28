@@ -8,38 +8,44 @@ describe("routes : posts", () => {
   beforeEach(done => {
     this.topic;
     this.post;
+    this.user;
 
     sequelize.sync({ force: true }).then(response => {
-      //#1
-      Topic.create({
-        title: "Expeditions to Alpha Centauri",
-        description: "A compilation of reports from recent visits to the star system."
-      }).then(topic => {
-        this.topic = topic;
-        User.create({
-          email: "starman@tesla.com",
-          password: "Trekkie4lyfe"
-        }).then(user => {
-          this.user = user;
 
-          Post.create({
-            title: "Snowball Fighting",
-            body: "So much snow!",
-            topicId: this.topic.id,
-            userId: this.user.id
-          })
-            .then(post => {
-              this.post = post;
-              done();
-            })
-            .catch(error => {
+             User.create({
+               email: "starman@tesla.com",
+               password: "Trekkie4lyfe"
+             })
+             .then((user) => {
+               this.user = user; //store the user
 
-              done();
-            });
-        });
-      });
-    });
-  });
+               Topic.create({
+                 title: "Expeditions to Alpha Centauri",
+                 description: "A compilation of reports from recent visits to the star system.",
+                 posts: [{
+                   title: "My first visit to Proxima Centauri b",
+                   body: "I saw some rocks.",
+                   userId: this.user.id
+                 }]
+               }, {
+                 include: {
+                   model: Post,
+                   as: "posts"
+                 }
+               })
+               .then((topic) => {
+                 this.topic = topic; //store the topic
+                 this.post = topic.posts[0]; //store the post
+                 done();
+               })
+             })
+           });
+         });
+
+
+       });
+
+
 
   describe("#setTopic()", () => {
 

@@ -61,7 +61,7 @@ describe("Topic", () => {
      this.post;
      this.user;
 
-     sequelize.sync({force: true}).then((res) => {
+     sequelize.sync({force: true}).then((response) => {
 
 // #2
        User.create({
@@ -98,4 +98,6 @@ describe("Topic", () => {
        })
      });
    });
+
+   
  });
