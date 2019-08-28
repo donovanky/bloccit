@@ -37,6 +37,16 @@ describe("routes : flairs", () => {
           })
             .then(post => {
               this.post = post;
+
+                Flair.create({
+                  name: "Helpful",
+                  color: "Green",
+                  topicId:this.topic.id,
+                  postId: this.post.id
+                })
+                .then(flair => {
+                  this.flair = flair;
+                done();
               done();
             })
             .catch(error => {
@@ -44,15 +54,6 @@ describe("routes : flairs", () => {
               done();
             });
 
-          Flair.create({
-            name: "Helpful",
-            color: "Green",
-            topicId:this.topic.id,
-            postId: this.post.id
-          })
-          .then(flair => {
-            this.flair = flair;
-          done();
           });
         });
       });
