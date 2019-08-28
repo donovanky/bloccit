@@ -51,7 +51,6 @@ describe("routes : posts", () => {
              title: "Pros of Cryosleep during the long journey",
              body: "1. Not having to answer the 'are we there yet?' question.",
              topicId: this.topic.id,
-             topicId: this.topic.id, //does this really need two topicId? I DOUBT IT
              userId: this.user.id
            })
            .then((post) => {
@@ -60,8 +59,40 @@ describe("routes : posts", () => {
              expect(post.topicId).toBe(this.topic.id);
              expect(post.userId).toBe(this.user.id);
              done();
+             .catch((error) => {
+               console.log(error);
+               done();
+             });
+           });
+         });
 
-});
+
+            describe("#setUser()", () => {
+              it("should associate a post and a user together", (done) => {
+                User.create({
+                  email: "ada@example.com",
+                  password: "password"
+                })
+                .then((newUser) => {
+                  expect(this.post.userId).toBe(this.user.id);
+                  this.post.setUser(newUser)
+                  .then((post) => {
+                    expect(this.post.userId).toBe(newUser.id);
+                    done();
+                  });
+                })
+              });
+            });
+
+            describe("#getUser()", () => {
+              it("should return the associated topic", (done) => {
+                this.post.getUser()
+                .then((associatedUser) => {
+                  expect(associatedUser.email).toBe("starman@tesla.com");
+                  done();
+                });
+              });
+            });
 
   describe("#setTopic()", () => {
 
