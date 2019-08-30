@@ -7,41 +7,41 @@ const Topic = require("../../src/db/models").Topic;
 const Post = require("../../src/db/models").Post;
 const User = require("../../src/db/models").User;
 
-describe("routes : posts", () => {
-  beforeEach(done => {
+ beforeEach((done) => {
     this.topic;
     this.post;
     this.user;
 
-    sequelize.sync({ force: true }).then(response => {
-      //#1
-      Topic.create({
-        title: "Expeditions to Alpha Centauri",
-        description: "A compilation of reports from recent visits to the star system."
-      }).then(topic => {
-        this.topic = topic;
-        User.create({
-          email: "starman@tesla.com",
-          password: "Trekkie4lyfe"
-        }).then(user => {
-          this.user = user;
+    sequelize.sync({force: true}).then((response) => {
+      User.create({
+        email: "starman@tesla.com",
+        password: "Trekkie4lyfe"
+      })
+      .then((user) => {
+        this.user = user;
 
-          Post.create({
+        Topic.create({
+          title: "Winter Games",
+          description: "Post your Winter Games stories.",
+          posts: [{
             title: "Snowball Fighting",
             body: "So much snow!",
-            topicId: this.topic.id,
             userId: this.user.id
-          })
-            .then(post => {
-              this.post = post;
-              done();
-            })
-            .catch(error => {
-              done();
-            });
-        });
-      });
+          }]
+        }, {
+          include: {
+           model: Post,
+           as: "posts"
+          }
+        })
+        .then((topic) => {
+          this.topic = topic;
+          this.post = topic.posts[0];
+          done();
+        })
+      })
     });
+
   });
 
     describe("GET /topics/:topicId/posts/new", () => {
@@ -67,6 +67,7 @@ describe("routes : posts", () => {
           };
           request.post(options,
             (error, response, body) => {
+              console.log(error, body)
 
               Post.findOne({where: {title: "Watching snow melt"}})
               .then((post) => {
