@@ -5,7 +5,9 @@ const sequelize = require("../../src/db/models/index").sequelize;
 const Topic = require("../../src/db/models").Topic;
 const User = require("../../src/db/models").User;
 
-function authorizeUser(role, done) {//helper function }
+function authorizeUser(role, done) {
+  //helper function
+
   User.create({
     email: `#{role}@example.com`,
     password: "123456",
@@ -30,7 +32,7 @@ function authorizeUser(role, done) {//helper function }
 describe("routes : topics", () => {
   beforeEach(done => {
     this.topic;
-    sequelize.sync({force: true}).then(response => {
+    sequelize.sync({force: true}).then(() => {
       Topic.create({
         title: "JS Frameworks",
         description: "There is a lot of them"
