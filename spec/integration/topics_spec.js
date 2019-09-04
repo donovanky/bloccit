@@ -20,13 +20,13 @@ function authorizeUser(role, done) {
       role: user.role, //mock user dropTable
       userId: user.id,
       email: user.email
-    }
-  },
-  (error, response, body) => {
-    done();
-  }
-);
-});
+        }
+      },
+      (error, response, body) => {
+        done();
+      }
+    );
+  });
 }
 
 describe("routes : topics", () => {
