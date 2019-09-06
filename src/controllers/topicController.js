@@ -21,7 +21,7 @@ module.exports = {
        response.render("topics.new");
      } else {
        request.flash("notice", "You are not authorized to do that.");
-       response.redirect(/topics);
+       response.redirect(`/topics`);
      }
    },
 

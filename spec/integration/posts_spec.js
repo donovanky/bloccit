@@ -184,8 +184,3 @@ const User = require("../../src/db/models").User;
             });
           });
       });
-
-
-
-
-});

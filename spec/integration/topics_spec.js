@@ -27,7 +27,6 @@ function authorizeUser(role, done) {
       }
     );
   });
-}
 
 describe("routes : topics", () => {
   beforeEach(done => {
@@ -46,6 +45,7 @@ describe("routes : topics", () => {
       });
     });
   });
+});
 
   describe("admin user performing CRUD actions for Topic", () => {
 
@@ -204,6 +204,7 @@ describe("routes : topics", () => {
         })
       });
     });
+  });
 
 describe ("member user performing CRUD actions for Topic", () => {
   beforeEach((done) => {
@@ -352,8 +353,4 @@ describe ("member user performing CRUD actions for Topic", () => {
         })
       });
     });
-  })
-
-
   });
-});
