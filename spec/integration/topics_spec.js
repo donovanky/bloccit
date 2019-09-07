@@ -354,4 +354,7 @@ function authorizeUser(role, done) {
         });
       });
 
-});
+      });
+    });
+  });
+}
