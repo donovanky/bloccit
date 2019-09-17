@@ -27,7 +27,7 @@ function authorizeUser(role, done) {
       }
     );
   });
-
+}
   describe("routes : topics", () => {
     beforeEach(done => {
       this.topic;

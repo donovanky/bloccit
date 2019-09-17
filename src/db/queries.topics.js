@@ -41,7 +41,6 @@ module.exports = {
        callback(null, topic);
      })
      .catch((error) => {
-       console.log("8.27!!!!!!!!!!!!!!" + error);
        callback(error);
      })
    },

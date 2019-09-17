@@ -33,15 +33,17 @@ module.exports = {
 // #1
      request.checkBody("email", "must be valid").isEmail();
      request.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
-     request.checkBody("passwordConfirmation", "must match password provided").optional().matches(request.body.password);
+     request.checkBody("passwordConfirmation", "must match password provided").matches(request.body.password);
    }
 
    const errors = request.validationErrors();
 
    if (errors) {
+     console.log("errors happened");
      request.flash("error", errors);
      return response.redirect(request.headers.referer);
    } else {
+     console.log("validation passed");
      return next();
    }
  }
