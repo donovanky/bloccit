@@ -28,7 +28,7 @@ module.exports = {
     };
     flairQueries.addFlair(newFlair, (error, flair) => {
       if(error){
-        
+
         response.redirect(500, "/flairs/new");
       } else {
         response.redirect(303, `/topics/${flair.topicId}/posts/${flair.postId}/flairs/${flair.id}`);
@@ -39,7 +39,7 @@ module.exports = {
   show(request, response, next){
     flairQueries.getFlair(request.params.id, (error, flair) => {
       if(error || flair == null){
-        
+
         response.redirect(404, "/flairs");
       } else {
         response.render("flairs/show", {

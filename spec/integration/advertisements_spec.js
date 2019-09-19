@@ -7,18 +7,20 @@ const Advertisement = require("../../src/db/models").Advertisement;
 describe("routes : advertisements", () => {
   beforeEach(done => {
     this.advertisement;
-    sequelize.sync({force: true}).then(response => {
+    sequelize.sync({
+      force: true
+    }).then(response => {
       Advertisement.create({
-        title: "Buy our widget",
-        description: "On sale until Sunday"
-      })
-      .then(advertisement => {
-        this.advertisement = advertisement;
-        done();
-      })
-      .catch(error => {
-        done();
-      });
+          title: "Buy our widget",
+          description: "On sale until Sunday"
+        })
+        .then(advertisement => {
+          this.advertisement = advertisement;
+          done();
+        })
+        .catch(error => {
+          done();
+        });
     });
   });
 
@@ -54,16 +56,20 @@ describe("routes : advertisements", () => {
 
     it("should create a new advertisement and redirect", done => {
       request.post(options, (error, response, body) => {
-        Advertisement.findOne({where: {title: "blink-182 songs"}})
-        .then(advertisement => {
-          expect(response.statusCode).toBe(303);
-          expect(advertisement.title).toBe("blink-182 songs");
-          expect(advertisement.description).toBe("What's your favorite blink-182 song?");
-          done();
-        })
-        .catch(error => {
-          done();
-        });
+        Advertisement.findOne({
+            where: {
+              title: "blink-182 songs"
+            }
+          })
+          .then(advertisement => {
+            expect(response.statusCode).toBe(303);
+            expect(advertisement.title).toBe("blink-182 songs");
+            expect(advertisement.description).toBe("What's your favorite blink-182 song?");
+            done();
+          })
+          .catch(error => {
+            done();
+          });
       });
     });
 
@@ -82,20 +88,20 @@ describe("routes : advertisements", () => {
   describe("POST /advertisements/:id/destroy", () => {
     it("should delete the topic with the associated ID", done => {
       Advertisement.findAll()
-      .then(advertisement => {
-        const advertisementCountBeforeDelete = advertisement.length;
+        .then(advertisement => {
+          const advertisementCountBeforeDelete = advertisement.length;
 
-        expect(advertisementCountBeforeDelete).toBe(1);
+          expect(advertisementCountBeforeDelete).toBe(1);
 
-        request.post(`${base}${this.advertisement.id}/destroy`, (error, response, body) => {
-          Advertisement.findAll()
-          .then(advertisement => {
-            expect(error).toBeNull();
-            expect(advertisement.length).toBe(advertisementCountBeforeDelete - 1);
-            done();
+          request.post(`${base}${this.advertisement.id}/destroy`, (error, response, body) => {
+            Advertisement.findAll()
+              .then(advertisement => {
+                expect(error).toBeNull();
+                expect(advertisement.length).toBe(advertisementCountBeforeDelete - 1);
+                done();
+              });
           });
         });
-      });
     });
   });
 
@@ -124,12 +130,14 @@ describe("routes : advertisements", () => {
         expect(error).toBeNull();
 
         Advertisement.findOne({
-          where: { id: this.advertisement.id }
-        })
-        .then(advertisement => {
-          expect(advertisement.title).toBe("!!!");
-          done();
-        })
+            where: {
+              id: this.advertisement.id
+            }
+          })
+          .then(advertisement => {
+            expect(advertisement.title).toBe("!!!");
+            done();
+          })
       });
 
 

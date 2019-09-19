@@ -2,9 +2,9 @@ const bcrypt = require("bcryptjs");
 
 module.exports = {
 
-// #1
+  // #1
   ensureAuthenticated(request, response, next) {
-    if (!request.user){
+    if (!request.user) {
       request.flash("notice", "You must be signed in to do that.")
       return response.redirect("/users/sign_in");
     } else {
@@ -12,7 +12,7 @@ module.exports = {
     }
   },
 
-// #2
+  // #2
   comparePass(userPassword, databasePassword) {
     return bcrypt.compareSync(userPassword, databasePassword);
   }
