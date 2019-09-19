@@ -39,7 +39,7 @@ module.exports = {
    const errors = request.validationErrors();
 
    if (errors) {
-     console.log("errors happened");
+     console.log("errors happened", errors);
      request.flash("error", errors);
      return response.redirect(request.headers.referer);
    } else {
