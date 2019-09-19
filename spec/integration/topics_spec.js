@@ -71,7 +71,6 @@ describe("routes : topics", () => {
           );
         });
 
-
       describe("GET /topics", () => {
         it("should return a status code 200 and all topics", done => {
           request.get(base, (error, response, body) => {
@@ -102,7 +101,7 @@ describe("routes : topics", () => {
             description: "What's your favorite blink-182 song?"
           }
         };
-
+        
         it("should create a new topic and redirect", done => {
           request.post(options, (error, response, body) => {
             Topic.findOne({
