@@ -21,35 +21,16 @@ describe("routes : users", () => {
 
   });
 
-  validateUsers(request, response, next) {
-    if(request.method === "POST") {
+    describe("GET /users/sign_up", () => {
 
-// #1
-      request.checkBody("email", "must be valid").isEmail();
-      request.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
-      request.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
-    }
-
-    const errors = request.validationErrors();
-
-    if (errors) {
-      request.flash("error", errors);
-      return response.redirect(request.headers.referer);
-    } else {
-      return next();
-    }
-  },
-
-  describe("GET /users/sign_up", () => {
-
-    it("should render a view with a sign up form", (done) => {
-      request.get(`${base}sign_up`, (error, response, body) => {
-        expect(error).toBeNull();
-        expect(body).toContain("Sign up");
-        done();
+      it("should render a view with a sign up form", (done) => {
+        request.get(`${base}sign_up`, (error, response, body) => {
+          expect(error).toBeNull();
+          expect(body).toContain("Sign up");
+          done();
+        });
       });
     });
-  });
 
   describe("POST /users", () => {
 
