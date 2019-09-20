@@ -1,9 +1,13 @@
 module.exports = {
   validatePosts(request, response, next) {
-    if(request.method === "POST") {
+    if (request.method === "POST") {
       request.checkParams("topicId", "must be valid").notEmpty().isInt();
-      request.checkBody("title", "must be at least 2 characters in length").isLength({min: 2});
-      request.checkBody("body", "must be at least 10 characters in length").isLength({min: 10});
+      request.checkBody("title", "must be at least 2 characters in length").isLength({
+        min: 2
+      });
+      request.checkBody("body", "must be at least 10 characters in length").isLength({
+        min: 10
+      });
     }
     const errors = request.validationErrors();
     if (errors) {
@@ -14,9 +18,13 @@ module.exports = {
     }
   },
   validateTopics(request, response, next) {
-    if(request.method === "POST") {
-      request.checkBody("title", "must be at least 5 characters in length").isLength({min: 5});
-      request.checkBody("description", "must be at least 10 characters in length").isLength({min: 10});
+    if (request.method === "POST") {
+      request.checkBody("title", "must be at least 5 characters in length").isLength({
+        min: 5
+      });
+      request.checkBody("description", "must be at least 10 characters in length").isLength({
+        min: 10
+      });
     }
     const errors = request.validationErrors();
     if (errors) {
@@ -26,27 +34,26 @@ module.exports = {
       return next();
     }
   },
-  validateUsers(request, response, next) {
+  validateUsers(req, res, next) {
+    if (req.method === "POST") {
 
-   if(request.method === "POST") {
+      // #1
+      req.checkBody("email", "must be valid").isEmail();
+      req.checkBody("password", "must be at least 6 characters in length").isLength({
+        min: 6
+      })
+      req.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
+    }
 
-// #1
-     request.checkBody("email", "must be valid").isEmail();
-     request.checkBody("password", "must be at least 6 characters in length").isLength({min: 6})
-     request.checkBody("passwordConfirmation", "must match password provided").optional.matches(request.body.password);
-   }
+    const errors = req.validationErrors();
 
-   const errors = request.validationErrors();
-
-   if (errors) {
-     console.log("errors happened", errors);
-     request.flash("error", errors);
-     return response.redirect(request.headers.referer);
-   } else {
-     console.log("validation passed");
-     return next();
-   }
- }
+    if (errors) {
+      req.flash("error", errors);
+      return res.redirect(req.headers.referer);
+    } else {
+      return next();
+    }
+  }
 
 
 }
