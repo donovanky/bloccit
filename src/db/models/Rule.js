@@ -2,19 +2,19 @@
 module.exports = (sequelize, DataTypes) => {
   var Rule = sequelize.define('Rule', {
     description: DataTypes.STRING,
-    TopicsId: {
+    TopicId: {
       type: DataTypes.INTEGER,
       onDelete: "CASCADE",
       references: {
         model: "Topics",
         key: "id",
-        as: "TopicsId",
+        as: "topicId",
       }
     }
   }, {});
   Rule.associate = function(models) {
-    Rule.belongsTo(models.Topics, {
-      foreignKey: "TopicsId",
+    Rule.belongsTo(models.Topic, {
+      foreignKey: "topicId",
       onDelete: "CASCADE",
     });
   };
