@@ -1,35 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <% include ../static/partials/head.ejs %>
-  </head>
-  <body>
-    <% include ../static/partials/navbar.ejs %>
 
-    <main class="container">
-      <h1><%= post.title %></h1>
-        <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
-        <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/flairs/new" class="btn btn-success">New Flair</a>
+<head>
+  <% include ../static/partials/head.ejs %>
+</head>
 
-        <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
-          <button type="submit" class="btn btn-danger">Delete</button>
-        </form>
+<body>
+  <% include ../static/partials/navbar.ejs %>
 
-      <p>
+  <main class="container">
+    <h1><%= post.title %></h1>
+    <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/edit" class="btn btn-warning">Edit</a>
+    <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/flairs/new" class="btn btn-success">New Flair</a>
+
+    <form style="display:initial" action="/topics/<%= post.topicId %>/posts/<%= post.id %>/destroy" method="post">
+      <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+
+    <p>
       <%= post.body %>
       <h1>Flairs</h1>
       <ul class="list-group">
         <% post.flairs.forEach((flair) => { %>
         <li class="list-group-item">
           <a href="/topics/<%= post.topicId %>/posts/<%= post.id %>/flairs/<%= flair.id %>">
-          <%= flair.name %> </a>
+            <%= flair.name %> </a>
         </li>
         <% }) %>
       </ul>
     </p>
-    </main>
 
-    <% include ../static/partials/baseScripts.ejs %>
+    <section id="comment-form">
+ 
+     <% if(currentUser) { %>
+       <% include ../comments/new.ejs %>
+     <% } %>
+    </section>
 
-  </body>
+    <section id="comment-list">
+     <% if(post.comments) { %>
+       <% post.comments.forEach((comment) => { %>
+
+         <%- include("../comments/show.ejs", {comment}) %>
+       <% }) %>
+     <% } %>
+    </section>
+
+  </main>
+
+  <% include ../static/partials/baseScripts.ejs %>
+
+</body>
+
 </html>

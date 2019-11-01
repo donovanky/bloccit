@@ -34,24 +34,38 @@ module.exports = {
       return next();
     }
   },
-  validateUsers(req, res, next) {
-    if (req.method === "POST") {
+  validateUsers(request, response, next) {
+    if (request.method === "POST") {
 
       // #1
-      req.checkBody("email", "must be valid").isEmail();
-      req.checkBody("password", "must be at least 6 characters in length").isLength({
+      request.checkBody("email", "must be valid").isEmail();
+      request.checkBody("password", "must be at least 6 characters in length").isLength({
         min: 6
       })
-      req.checkBody("passwordConfirmation", "must match password provided").optional().matches(req.body.password);
+      request.checkBody("passwordConfirmation", "must match password provided").optional().matches(request.body.password);
     }
 
-    const errors = req.validationErrors();
+    const errors = request.validationErrors();
 
     if (errors) {
-      req.flash("error", errors);
-      return res.redirect(req.headers.referer);
+      request.flash("error", errors);
+      return response.redirect(request.headers.referer);
     } else {
       return next();
+    }
+  },
+
+  validateComments(request, response, next) {
+    if(request.method === "POST"){
+      request.checkBody("body", "must not be empty").notEmpty();
+    }
+
+    const errors = request.validationErrors();
+    if (errors){
+      request.flash("error", errors);
+      return response.redirect(request.headers.referer);
+    } else {
+      return next()
     }
   }
 
